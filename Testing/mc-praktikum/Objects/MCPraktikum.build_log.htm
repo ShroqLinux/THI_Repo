@@ -1,0 +1,100 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ÂµVision V5.39.0.0
+Copyright (C) 2023 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: Shrey Pethkar, Airbus DS, LIC=----
+ 
+Tool Versions:
+Toolchain:       MDK-Lite  Version: 5.39.0.0
+Toolchain Path:  C:\Keil_v5\ARM\ARMCLANG\Bin
+C Compiler:      ArmClang.exe V6.21
+Assembler:       Armasm.exe V6.21
+Linker/Locator:  ArmLink.exe V6.21
+Library Manager: ArmAr.exe V6.21
+Hex Converter:   FromElf.exe V6.21
+CPU DLL:         SARMCM3.DLL V5.39.0.0
+Dialog DLL:      DCM.DLL V1.17.5.0
+Target DLL:      UL2CM3.DLL V1.164.9.0
+Dialog DLL:      TCM.DLL V1.56.4.0
+ 
+<h2>Project:</h2>
+C:\Workspace\uni_repo\Inf2\Praktikum\MC_Praktikum_2024_V1.5\mc-praktikum\MC_Praktikum.uvprojx
+Project File Date:  04/10/2024
+
+<h2>Output:</h2>
+*** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
+Build target 'Simulation - Flash'
+assembling startup_stm32f407xx.s...
+main.c(4): warning: In file included from...
+./display.h(20): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   20 | // L<F6>schen des Displays (in der angegebenen Farbe)
+      |     ^
+./display.h(31): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   31 | // Wichtig: die folgende Funktion muss zur Verf<FC>gung gestellt werden 
+      |                                                ^
+main.c(64): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   64 | void TIM7_Init() {
+      |               ^
+      |                void
+main.c(78): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   78 | void LEDs_InitPorts() {
+      |                    ^
+      |                     void
+main.c(105): warning: unused parameter 'data' [-Wunused-parameter]
+  105 | void LEDs_Write (uint16_t data) {
+      |                           ^
+main.c(105): warning: no previous prototype for function 'LEDs_Write' [-Wmissing-prototypes]
+  105 | void LEDs_Write (uint16_t data) {
+      |      ^
+main.c(105): note: declare 'static' if the function is not intended to be used outside of this translation unit
+  105 | void LEDs_Write (uint16_t data) {
+      | ^
+      | static 
+6 warnings generated.
+compiling main.c...
+RTE/Device/STM32F407VGTx/system_stm32f4xx.c(263): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  263 |   tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4)];
+      |         ^~~~~~~~~~~~~
+1 warning generated.
+compiling system_stm32f4xx.c...
+compiling _mcpr_stm32f407.c...
+linking...
+Program Size: Code=2590 RO-data=8646 RW-data=4 ZI-data=1640  
+".\Objects\MCPraktikum.axf" - 0 Error(s), 7 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                https://www.keil.com/pack/ARM.CMSIS.6.0.0.pack
+                ARM::CMSIS@6.0.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 6.0.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
+                Keil::STM32F4xx_DFP@2.17.1
+                STMicroelectronics STM32F4 Series Device Support, Drivers and Examples
+   * Component: Startup Version: 2.6.3
+
+<h2>Collection of Component include folders:</h2>
+  ./RTE/_Simulation_-_Flash
+  C:/Users/shpet/AppData/Local/Arm/Packs/ARM/CMSIS/6.0.0/CMSIS/Core/Include
+  C:/Users/shpet/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE@6.0.0
+
+   * Component: Keil::Device:Startup@2.6.3
+      Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
+Build Time Elapsed:  00:00:01
+</pre>
+</body>
+</html>
