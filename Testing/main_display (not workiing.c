@@ -87,11 +87,12 @@ void TIM7_Init()
 	TIM7->PSC = 84 - 1; // set pre-scaler to send a signal to counter after 83 signals from internal clock
 						   // after pre-scaler: 1 MHz, interrupt is triggered every 1ms
 	TIM7->ARR = 1000-1;		   // set auto reload register to 999, at 999 + 1 = 1000 cnt is reset
-	TIM7->CR1 |= 1;
 	TIM7->DIER |= 1;	   // Interrupt-enable register (UIE), when set to 1 enters TIM7_IRQHandler service routine
 
 	NVIC_SetPriority(TIM7_IRQn, 10);
 	NVIC_EnableIRQ(TIM7_IRQn);
+
+	TIM7->CR1 |= 1;
 }
 
 void LEDs_InitPorts()
