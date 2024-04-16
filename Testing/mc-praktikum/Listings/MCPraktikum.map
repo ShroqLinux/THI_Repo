@@ -702,60 +702,68 @@ Image Symbol Table
     [Anonymous Symbol]                       0x08001704   Section        0  display.o(.text.LCD_WriteWord)
     [Anonymous Symbol]                       0x08001738   Section        0  system_stm32f4xx.o(.text.SystemInit)
     [Anonymous Symbol]                       0x0800174c   Section        0  main.o(.text.TIM12_Init)
-    [Anonymous Symbol]                       0x08001814   Section        0  main.o(.text.TIM8_BRK_TIM12_IRQHandler)
-    __NVIC_EnableIRQ                         0x08001861   Thumb Code    42  main.o(.text.__NVIC_EnableIRQ)
-    [Anonymous Symbol]                       0x08001860   Section        0  main.o(.text.__NVIC_EnableIRQ)
-    __NVIC_SetPriority                       0x0800188d   Thumb Code    58  main.o(.text.__NVIC_SetPriority)
-    [Anonymous Symbol]                       0x0800188c   Section        0  main.o(.text.__NVIC_SetPriority)
-    [Anonymous Symbol]                       0x080018c8   Section        0  main.o(.text.main)
-    [Anonymous Symbol]                       0x08001958   Section        0  display.o(.text.wait_us)
-    CL$$btod_d2e                             0x08001978   Section       62  btod.o(CL$$btod_d2e)
-    CL$$btod_d2e_denorm_low                  0x080019b6   Section       70  btod.o(CL$$btod_d2e_denorm_low)
-    CL$$btod_d2e_norm_op1                    0x080019fc   Section       96  btod.o(CL$$btod_d2e_norm_op1)
-    CL$$btod_div_common                      0x08001a5c   Section      824  btod.o(CL$$btod_div_common)
-    CL$$btod_e2e                             0x08001d94   Section      220  btod.o(CL$$btod_e2e)
-    CL$$btod_ediv                            0x08001e70   Section       42  btod.o(CL$$btod_ediv)
-    CL$$btod_emul                            0x08001e9a   Section       42  btod.o(CL$$btod_emul)
-    CL$$btod_mult_common                     0x08001ec4   Section      580  btod.o(CL$$btod_mult_common)
-    i.__ARM_fpclassify                       0x08002108   Section        0  fpclassify.o(i.__ARM_fpclassify)
-    i._is_digit                              0x08002138   Section        0  __printf_wp.o(i._is_digit)
-    locale$$code                             0x08002148   Section       44  lc_numeric_c.o(locale$$code)
-    locale$$code                             0x08002174   Section       44  lc_ctype_c.o(locale$$code)
-    $v0                                      0x080021a0   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x080021a0   Section       26  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x080021ba   Number         0  printf1.o(x$fpl$printf1)
-    x$fpl$printf1                            0x080021ba   Section        4  printf1.o(x$fpl$printf1)
-    $v0                                      0x080021be   Number         0  printf2.o(x$fpl$printf2)
-    x$fpl$printf2                            0x080021be   Section        4  printf2.o(x$fpl$printf2)
-    x$fpl$usenofp                            0x080021c2   Section        0  usenofp.o(x$fpl$usenofp)
-    initial_mbstate                          0x080021c4   Data           8  _printf_wctomb.o(.constdata)
-    .constdata                               0x080021c4   Section        8  _printf_wctomb.o(.constdata)
-    uc_hextab                                0x080021cc   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
-    .constdata                               0x080021cc   Section       40  _printf_hex_int_ll_ptr.o(.constdata)
-    lc_hextab                                0x080021e0   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
-    maptable                                 0x080021f4   Data          17  __printf_flags_ss_wp.o(.constdata)
-    .constdata                               0x080021f4   Section       17  __printf_flags_ss_wp.o(.constdata)
-    lc_hextab                                0x08002205   Data          19  _printf_fp_hex.o(.constdata)
-    .constdata                               0x08002205   Section       38  _printf_fp_hex.o(.constdata)
-    uc_hextab                                0x08002218   Data          19  _printf_fp_hex.o(.constdata)
-    tenpwrs_x                                0x0800222c   Data          60  bigflt0.o(.constdata)
-    .constdata                               0x0800222c   Section      148  bigflt0.o(.constdata)
-    tenpwrs_i                                0x08002268   Data          64  bigflt0.o(.constdata)
-    .L.str                                   0x080042c0   Data          10  main.o(.rodata.str1.1)
-    [Anonymous Symbol]                       0x080042c0   Section        0  main.o(.rodata.str1.1)
-    .L.str.1                                 0x080042ca   Data           7  main.o(.rodata.str1.1)
-    locale$$data                             0x080042e4   Section       28  lc_numeric_c.o(locale$$data)
-    __lcnum_c_name                           0x080042e8   Data           2  lc_numeric_c.o(locale$$data)
-    __lcnum_c_start                          0x080042f0   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_point                          0x080042fc   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_thousands                      0x080042fe   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_grouping                       0x080042ff   Data           0  lc_numeric_c.o(locale$$data)
-    __lcnum_c_end                            0x08004300   Data           0  lc_numeric_c.o(locale$$data)
-    locale$$data                             0x08004300   Section      272  lc_ctype_c.o(locale$$data)
-    __lcctype_c_name                         0x08004304   Data           2  lc_ctype_c.o(locale$$data)
-    __lcctype_c_start                        0x0800430c   Data           0  lc_ctype_c.o(locale$$data)
-    __lcctype_c_end                          0x08004410   Data           0  lc_ctype_c.o(locale$$data)
+    [Anonymous Symbol]                       0x08001838   Section        0  main.o(.text.TIM8_BRK_TIM12_IRQHandler)
+    __NVIC_EnableIRQ                         0x08001899   Thumb Code    42  main.o(.text.__NVIC_EnableIRQ)
+    [Anonymous Symbol]                       0x08001898   Section        0  main.o(.text.__NVIC_EnableIRQ)
+    __NVIC_SetPriority                       0x080018c5   Thumb Code    58  main.o(.text.__NVIC_SetPriority)
+    [Anonymous Symbol]                       0x080018c4   Section        0  main.o(.text.__NVIC_SetPriority)
+    [Anonymous Symbol]                       0x08001900   Section        0  main.o(.text.main)
+    [Anonymous Symbol]                       0x08001990   Section        0  display.o(.text.wait_us)
+    CL$$btod_d2e                             0x080019b0   Section       62  btod.o(CL$$btod_d2e)
+    CL$$btod_d2e_denorm_low                  0x080019ee   Section       70  btod.o(CL$$btod_d2e_denorm_low)
+    CL$$btod_d2e_norm_op1                    0x08001a34   Section       96  btod.o(CL$$btod_d2e_norm_op1)
+    CL$$btod_div_common                      0x08001a94   Section      824  btod.o(CL$$btod_div_common)
+    CL$$btod_e2e                             0x08001dcc   Section      220  btod.o(CL$$btod_e2e)
+    CL$$btod_ediv                            0x08001ea8   Section       42  btod.o(CL$$btod_ediv)
+    CL$$btod_emul                            0x08001ed2   Section       42  btod.o(CL$$btod_emul)
+    CL$$btod_mult_common                     0x08001efc   Section      580  btod.o(CL$$btod_mult_common)
+    i.__ARM_fpclassify                       0x08002140   Section        0  fpclassify.o(i.__ARM_fpclassify)
+    i._is_digit                              0x08002170   Section        0  __printf_wp.o(i._is_digit)
+    locale$$code                             0x08002180   Section       44  lc_numeric_c.o(locale$$code)
+    locale$$code                             0x080021ac   Section       44  lc_ctype_c.o(locale$$code)
+    $v0                                      0x080021d8   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x080021d8   Section       26  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x080021f2   Number         0  printf1.o(x$fpl$printf1)
+    x$fpl$printf1                            0x080021f2   Section        4  printf1.o(x$fpl$printf1)
+    $v0                                      0x080021f6   Number         0  printf2.o(x$fpl$printf2)
+    x$fpl$printf2                            0x080021f6   Section        4  printf2.o(x$fpl$printf2)
+    x$fpl$usenofp                            0x080021fa   Section        0  usenofp.o(x$fpl$usenofp)
+    initial_mbstate                          0x080021fc   Data           8  _printf_wctomb.o(.constdata)
+    .constdata                               0x080021fc   Section        8  _printf_wctomb.o(.constdata)
+    uc_hextab                                0x08002204   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
+    .constdata                               0x08002204   Section       40  _printf_hex_int_ll_ptr.o(.constdata)
+    lc_hextab                                0x08002218   Data          20  _printf_hex_int_ll_ptr.o(.constdata)
+    maptable                                 0x0800222c   Data          17  __printf_flags_ss_wp.o(.constdata)
+    .constdata                               0x0800222c   Section       17  __printf_flags_ss_wp.o(.constdata)
+    lc_hextab                                0x0800223d   Data          19  _printf_fp_hex.o(.constdata)
+    .constdata                               0x0800223d   Section       38  _printf_fp_hex.o(.constdata)
+    uc_hextab                                0x08002250   Data          19  _printf_fp_hex.o(.constdata)
+    tenpwrs_x                                0x08002264   Data          60  bigflt0.o(.constdata)
+    .constdata                               0x08002264   Section      148  bigflt0.o(.constdata)
+    tenpwrs_i                                0x080022a0   Data          64  bigflt0.o(.constdata)
+    .L.str                                   0x080042f8   Data          10  main.o(.rodata.str1.1)
+    [Anonymous Symbol]                       0x080042f8   Section        0  main.o(.rodata.str1.1)
+    .L.str.1                                 0x08004302   Data           7  main.o(.rodata.str1.1)
+    locale$$data                             0x0800431c   Section       28  lc_numeric_c.o(locale$$data)
+    __lcnum_c_name                           0x08004320   Data           2  lc_numeric_c.o(locale$$data)
+    __lcnum_c_start                          0x08004328   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_point                          0x08004334   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_thousands                      0x08004336   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_grouping                       0x08004337   Data           0  lc_numeric_c.o(locale$$data)
+    __lcnum_c_end                            0x08004338   Data           0  lc_numeric_c.o(locale$$data)
+    locale$$data                             0x08004338   Section      272  lc_ctype_c.o(locale$$data)
+    __lcctype_c_name                         0x0800433c   Data           2  lc_ctype_c.o(locale$$data)
+    __lcctype_c_start                        0x08004344   Data           0  lc_ctype_c.o(locale$$data)
+    __lcctype_c_end                          0x08004448   Data           0  lc_ctype_c.o(locale$$data)
     .bss                                     0x20000000   Section       96  libspace.o(.bss)
+    delta                                    0x20000060   Data           2  main.o(.bss.delta)
+    [Anonymous Symbol]                       0x20000060   Section        0  main.o(.bss.delta)
+    last_capture                             0x20000062   Data           2  main.o(.bss.last_capture)
+    [Anonymous Symbol]                       0x20000062   Section        0  main.o(.bss.last_capture)
+    this_capture                             0x20000064   Data           2  main.o(.bss.this_capture)
+    [Anonymous Symbol]                       0x20000064   Section        0  main.o(.bss.this_capture)
+    ticks                                    0x20000068   Data           4  main.o(.bss.ticks)
+    [Anonymous Symbol]                       0x20000068   Section        0  main.o(.bss.ticks)
     Heap_Mem                                 0x20000070   Data         512  startup_stm32f407xx.o(HEAP)
     HEAP                                     0x20000070   Section      512  startup_stm32f407xx.o(HEAP)
     Stack_Mem                                0x20000270   Data        1024  startup_stm32f407xx.o(STACK)
@@ -1027,38 +1035,34 @@ Image Symbol Table
     LCD_WriteString                          0x080016bd   Thumb Code    70  display.o(.text.LCD_WriteString)
     LCD_WriteWord                            0x08001705   Thumb Code    52  display.o(.text.LCD_WriteWord)
     SystemInit                               0x08001739   Thumb Code    18  system_stm32f4xx.o(.text.SystemInit)
-    TIM12_Init                               0x0800174d   Thumb Code   200  main.o(.text.TIM12_Init)
-    TIM8_BRK_TIM12_IRQHandler                0x08001815   Thumb Code    76  main.o(.text.TIM8_BRK_TIM12_IRQHandler)
-    main                                     0x080018c9   Thumb Code   142  main.o(.text.main)
-    wait_us                                  0x08001959   Thumb Code    32  display.o(.text.wait_us)
-    _btod_d2e                                0x08001979   Thumb Code    62  btod.o(CL$$btod_d2e)
-    _d2e_denorm_low                          0x080019b7   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
-    _d2e_norm_op1                            0x080019fd   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
-    __btod_div_common                        0x08001a5d   Thumb Code   696  btod.o(CL$$btod_div_common)
-    _e2e                                     0x08001d95   Thumb Code   220  btod.o(CL$$btod_e2e)
-    _btod_ediv                               0x08001e71   Thumb Code    42  btod.o(CL$$btod_ediv)
-    _btod_emul                               0x08001e9b   Thumb Code    42  btod.o(CL$$btod_emul)
-    __btod_mult_common                       0x08001ec5   Thumb Code   580  btod.o(CL$$btod_mult_common)
-    __ARM_fpclassify                         0x08002109   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
-    _is_digit                                0x08002139   Thumb Code    14  __printf_wp.o(i._is_digit)
-    _get_lc_numeric                          0x08002149   Thumb Code    44  lc_numeric_c.o(locale$$code)
-    _get_lc_ctype                            0x08002175   Thumb Code    44  lc_ctype_c.o(locale$$code)
-    _fp_init                                 0x080021a1   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x080021b9   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x080021b9   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    _printf_fp_dec                           0x080021bb   Thumb Code     4  printf1.o(x$fpl$printf1)
-    _printf_fp_hex                           0x080021bf   Thumb Code     4  printf2.o(x$fpl$printf2)
-    __I$use$fp                               0x080021c2   Number         0  usenofp.o(x$fpl$usenofp)
-    console_font_12x16                       0x080022c0   Data        8192  display.o(.rodata.console_font_12x16)
-    Region$$Table$$Base                      0x080042d4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x080042e4   Number         0  anon$$obj.o(Region$$Table)
-    __ctype                                  0x0800430d   Data           0  lc_ctype_c.o(locale$$data)
+    TIM12_Init                               0x0800174d   Thumb Code   234  main.o(.text.TIM12_Init)
+    TIM8_BRK_TIM12_IRQHandler                0x08001839   Thumb Code    96  main.o(.text.TIM8_BRK_TIM12_IRQHandler)
+    main                                     0x08001901   Thumb Code   142  main.o(.text.main)
+    wait_us                                  0x08001991   Thumb Code    32  display.o(.text.wait_us)
+    _btod_d2e                                0x080019b1   Thumb Code    62  btod.o(CL$$btod_d2e)
+    _d2e_denorm_low                          0x080019ef   Thumb Code    70  btod.o(CL$$btod_d2e_denorm_low)
+    _d2e_norm_op1                            0x08001a35   Thumb Code    96  btod.o(CL$$btod_d2e_norm_op1)
+    __btod_div_common                        0x08001a95   Thumb Code   696  btod.o(CL$$btod_div_common)
+    _e2e                                     0x08001dcd   Thumb Code   220  btod.o(CL$$btod_e2e)
+    _btod_ediv                               0x08001ea9   Thumb Code    42  btod.o(CL$$btod_ediv)
+    _btod_emul                               0x08001ed3   Thumb Code    42  btod.o(CL$$btod_emul)
+    __btod_mult_common                       0x08001efd   Thumb Code   580  btod.o(CL$$btod_mult_common)
+    __ARM_fpclassify                         0x08002141   Thumb Code    48  fpclassify.o(i.__ARM_fpclassify)
+    _is_digit                                0x08002171   Thumb Code    14  __printf_wp.o(i._is_digit)
+    _get_lc_numeric                          0x08002181   Thumb Code    44  lc_numeric_c.o(locale$$code)
+    _get_lc_ctype                            0x080021ad   Thumb Code    44  lc_ctype_c.o(locale$$code)
+    _fp_init                                 0x080021d9   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x080021f1   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x080021f1   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    _printf_fp_dec                           0x080021f3   Thumb Code     4  printf1.o(x$fpl$printf1)
+    _printf_fp_hex                           0x080021f7   Thumb Code     4  printf2.o(x$fpl$printf2)
+    __I$use$fp                               0x080021fa   Number         0  usenofp.o(x$fpl$usenofp)
+    console_font_12x16                       0x080022f8   Data        8192  display.o(.rodata.console_font_12x16)
+    Region$$Table$$Base                      0x0800430c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0800431c   Number         0  anon$$obj.o(Region$$Table)
+    __ctype                                  0x08004345   Data           0  lc_ctype_c.o(locale$$data)
     __libspace_start                         0x20000000   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000060   Data           0  libspace.o(.bss)
-    delta                                    0x20000060   Data           2  main.o(.bss.delta)
-    last_capture                             0x20000062   Data           2  main.o(.bss.last_capture)
-    this_capture                             0x20000064   Data           2  main.o(.bss.this_capture)
-    ticks                                    0x20000068   Data           4  main.o(.bss.ticks)
 
 
 
@@ -1068,9 +1072,9 @@ Memory Map of the image
 
   Image Entry point : 0x080002e5
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x00004410, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x00004448, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00004410, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00004448, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1200,63 +1204,64 @@ Memory Map of the image
     0x08001704   0x08001704   0x00000034   Code   RO           50    .text.LCD_WriteWord  display.o
     0x08001738   0x08001738   0x00000012   Code   RO           84    .text.SystemInit    system_stm32f4xx.o
     0x0800174a   0x0800174a   0x00000002   PAD
-    0x0800174c   0x0800174c   0x000000c8   Code   RO            6    .text.TIM12_Init    main.o
-    0x08001814   0x08001814   0x0000004c   Code   RO            4    .text.TIM8_BRK_TIM12_IRQHandler  main.o
-    0x08001860   0x08001860   0x0000002a   Code   RO           10    .text.__NVIC_EnableIRQ  main.o
-    0x0800188a   0x0800188a   0x00000002   PAD
-    0x0800188c   0x0800188c   0x0000003a   Code   RO            8    .text.__NVIC_SetPriority  main.o
-    0x080018c6   0x080018c6   0x00000002   PAD
-    0x080018c8   0x080018c8   0x0000008e   Code   RO           14    .text.main          main.o
-    0x08001956   0x08001956   0x00000002   PAD
-    0x08001958   0x08001958   0x00000020   Code   RO           48    .text.wait_us       display.o
-    0x08001978   0x08001978   0x0000003e   Code   RO          254    CL$$btod_d2e        c_wu.l(btod.o)
-    0x080019b6   0x080019b6   0x00000046   Code   RO          256    CL$$btod_d2e_denorm_low  c_wu.l(btod.o)
-    0x080019fc   0x080019fc   0x00000060   Code   RO          255    CL$$btod_d2e_norm_op1  c_wu.l(btod.o)
-    0x08001a5c   0x08001a5c   0x00000338   Code   RO          264    CL$$btod_div_common  c_wu.l(btod.o)
-    0x08001d94   0x08001d94   0x000000dc   Code   RO          261    CL$$btod_e2e        c_wu.l(btod.o)
-    0x08001e70   0x08001e70   0x0000002a   Code   RO          258    CL$$btod_ediv       c_wu.l(btod.o)
-    0x08001e9a   0x08001e9a   0x0000002a   Code   RO          257    CL$$btod_emul       c_wu.l(btod.o)
-    0x08001ec4   0x08001ec4   0x00000244   Code   RO          263    CL$$btod_mult_common  c_wu.l(btod.o)
-    0x08002108   0x08002108   0x00000030   Code   RO          292    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
-    0x08002138   0x08002138   0x0000000e   Code   RO          164    i._is_digit         c_wu.l(__printf_wp.o)
-    0x08002146   0x08002146   0x00000002   PAD
-    0x08002148   0x08002148   0x0000002c   Code   RO          279    locale$$code        c_wu.l(lc_numeric_c.o)
-    0x08002174   0x08002174   0x0000002c   Code   RO          302    locale$$code        c_wu.l(lc_ctype_c.o)
-    0x080021a0   0x080021a0   0x0000001a   Code   RO          364    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x080021ba   0x080021ba   0x00000004   Code   RO          197    x$fpl$printf1       fz_wm.l(printf1.o)
-    0x080021be   0x080021be   0x00000004   Code   RO          199    x$fpl$printf2       fz_wm.l(printf2.o)
-    0x080021c2   0x080021c2   0x00000000   Code   RO          291    x$fpl$usenofp       fz_wm.l(usenofp.o)
-    0x080021c2   0x080021c2   0x00000002   PAD
-    0x080021c4   0x080021c4   0x00000008   Data   RO          123    .constdata          c_wu.l(_printf_wctomb.o)
-    0x080021cc   0x080021cc   0x00000028   Data   RO          152    .constdata          c_wu.l(_printf_hex_int_ll_ptr.o)
-    0x080021f4   0x080021f4   0x00000011   Data   RO          172    .constdata          c_wu.l(__printf_flags_ss_wp.o)
-    0x08002205   0x08002205   0x00000026   Data   RO          229    .constdata          c_wu.l(_printf_fp_hex.o)
-    0x0800222b   0x0800222b   0x00000001   PAD
-    0x0800222c   0x0800222c   0x00000094   Data   RO          252    .constdata          c_wu.l(bigflt0.o)
-    0x080022c0   0x080022c0   0x00002000   Data   RO           66    .rodata.console_font_12x16  display.o
-    0x080042c0   0x080042c0   0x00000011   Data   RO           20    .rodata.str1.1      main.o
-    0x080042d1   0x080042d1   0x00000003   PAD
-    0x080042d4   0x080042d4   0x00000010   Data   RO          439    Region$$Table       anon$$obj.o
-    0x080042e4   0x080042e4   0x0000001c   Data   RO          278    locale$$data        c_wu.l(lc_numeric_c.o)
-    0x08004300   0x08004300   0x00000110   Data   RO          301    locale$$data        c_wu.l(lc_ctype_c.o)
+    0x0800174c   0x0800174c   0x000000ea   Code   RO            6    .text.TIM12_Init    main.o
+    0x08001836   0x08001836   0x00000002   PAD
+    0x08001838   0x08001838   0x00000060   Code   RO            4    .text.TIM8_BRK_TIM12_IRQHandler  main.o
+    0x08001898   0x08001898   0x0000002a   Code   RO           10    .text.__NVIC_EnableIRQ  main.o
+    0x080018c2   0x080018c2   0x00000002   PAD
+    0x080018c4   0x080018c4   0x0000003a   Code   RO            8    .text.__NVIC_SetPriority  main.o
+    0x080018fe   0x080018fe   0x00000002   PAD
+    0x08001900   0x08001900   0x0000008e   Code   RO           14    .text.main          main.o
+    0x0800198e   0x0800198e   0x00000002   PAD
+    0x08001990   0x08001990   0x00000020   Code   RO           48    .text.wait_us       display.o
+    0x080019b0   0x080019b0   0x0000003e   Code   RO          254    CL$$btod_d2e        c_wu.l(btod.o)
+    0x080019ee   0x080019ee   0x00000046   Code   RO          256    CL$$btod_d2e_denorm_low  c_wu.l(btod.o)
+    0x08001a34   0x08001a34   0x00000060   Code   RO          255    CL$$btod_d2e_norm_op1  c_wu.l(btod.o)
+    0x08001a94   0x08001a94   0x00000338   Code   RO          264    CL$$btod_div_common  c_wu.l(btod.o)
+    0x08001dcc   0x08001dcc   0x000000dc   Code   RO          261    CL$$btod_e2e        c_wu.l(btod.o)
+    0x08001ea8   0x08001ea8   0x0000002a   Code   RO          258    CL$$btod_ediv       c_wu.l(btod.o)
+    0x08001ed2   0x08001ed2   0x0000002a   Code   RO          257    CL$$btod_emul       c_wu.l(btod.o)
+    0x08001efc   0x08001efc   0x00000244   Code   RO          263    CL$$btod_mult_common  c_wu.l(btod.o)
+    0x08002140   0x08002140   0x00000030   Code   RO          292    i.__ARM_fpclassify  m_wm.l(fpclassify.o)
+    0x08002170   0x08002170   0x0000000e   Code   RO          164    i._is_digit         c_wu.l(__printf_wp.o)
+    0x0800217e   0x0800217e   0x00000002   PAD
+    0x08002180   0x08002180   0x0000002c   Code   RO          279    locale$$code        c_wu.l(lc_numeric_c.o)
+    0x080021ac   0x080021ac   0x0000002c   Code   RO          302    locale$$code        c_wu.l(lc_ctype_c.o)
+    0x080021d8   0x080021d8   0x0000001a   Code   RO          364    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x080021f2   0x080021f2   0x00000004   Code   RO          197    x$fpl$printf1       fz_wm.l(printf1.o)
+    0x080021f6   0x080021f6   0x00000004   Code   RO          199    x$fpl$printf2       fz_wm.l(printf2.o)
+    0x080021fa   0x080021fa   0x00000000   Code   RO          291    x$fpl$usenofp       fz_wm.l(usenofp.o)
+    0x080021fa   0x080021fa   0x00000002   PAD
+    0x080021fc   0x080021fc   0x00000008   Data   RO          123    .constdata          c_wu.l(_printf_wctomb.o)
+    0x08002204   0x08002204   0x00000028   Data   RO          152    .constdata          c_wu.l(_printf_hex_int_ll_ptr.o)
+    0x0800222c   0x0800222c   0x00000011   Data   RO          172    .constdata          c_wu.l(__printf_flags_ss_wp.o)
+    0x0800223d   0x0800223d   0x00000026   Data   RO          229    .constdata          c_wu.l(_printf_fp_hex.o)
+    0x08002263   0x08002263   0x00000001   PAD
+    0x08002264   0x08002264   0x00000094   Data   RO          252    .constdata          c_wu.l(bigflt0.o)
+    0x080022f8   0x080022f8   0x00002000   Data   RO           66    .rodata.console_font_12x16  display.o
+    0x080042f8   0x080042f8   0x00000011   Data   RO           20    .rodata.str1.1      main.o
+    0x08004309   0x08004309   0x00000003   PAD
+    0x0800430c   0x0800430c   0x00000010   Data   RO          439    Region$$Table       anon$$obj.o
+    0x0800431c   0x0800431c   0x0000001c   Data   RO          278    locale$$data        c_wu.l(lc_numeric_c.o)
+    0x08004338   0x08004338   0x00000110   Data   RO          301    locale$$data        c_wu.l(lc_ctype_c.o)
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08004410, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08004448, Size: 0x00000000, Max: 0xffffffff, ABSOLUTE)
 
     **** No section assigned to this execution region ****
 
 
-    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x08004410, Size: 0x00000670, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000000, Load base: 0x08004448, Size: 0x00000670, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
     0x20000000        -       0x00000060   Zero   RW          295    .bss                c_wu.l(libspace.o)
-    0x20000060        -       0x00000002   Zero   RW           18    .bss.delta          main.o
-    0x20000062        -       0x00000002   Zero   RW           17    .bss.last_capture   main.o
+    0x20000060        -       0x00000002   Zero   RW           19    .bss.delta          main.o
+    0x20000062        -       0x00000002   Zero   RW           18    .bss.last_capture   main.o
     0x20000064        -       0x00000002   Zero   RW           16    .bss.this_capture   main.o
-    0x20000066   0x08004410   0x00000002   PAD
-    0x20000068        -       0x00000004   Zero   RW           19    .bss.ticks          main.o
-    0x2000006c   0x08004410   0x00000004   PAD
+    0x20000066   0x08004448   0x00000002   PAD
+    0x20000068        -       0x00000004   Zero   RW           17    .bss.ticks          main.o
+    0x2000006c   0x08004448   0x00000004   PAD
     0x20000070        -       0x00000200   Zero   RW           75    HEAP                startup_stm32f407xx.o
     0x20000270        -       0x00000400   Zero   RW           74    STACK               startup_stm32f407xx.o
 
@@ -1269,14 +1274,14 @@ Image component sizes
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
        664          0       8192          0          0       4460   display.o
-       646          0         17          0         10       6183   main.o
+       700          0         17          0         10       6224   main.o
         64         26        392          0       1536        888   startup_stm32f407xx.o
         18          0          0          0          0       2733   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-      1404         26       8620          0       1552      14264   Object Totals
+      1460         26       8620          0       1552      14305   Object Totals
          0          0         16          0          0          0   (incl. Generated)
-        12          0          3          0          6          0   (incl. Padding)
+        14          0          3          0          6          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -1382,15 +1387,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      8252        296       9172          0       1648      16320   Grand Totals
-      8252        296       9172          0       1648      16320   ELF Image Totals
-      8252        296       9172          0          0          0   ROM Totals
+      8308        296       9172          0       1648      16361   Grand Totals
+      8308        296       9172          0       1648      16361   ELF Image Totals
+      8308        296       9172          0          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                17424 (  17.02kB)
+    Total RO  Size (Code + RO Data)                17480 (  17.07kB)
     Total RW  Size (RW Data + ZI Data)              1648 (   1.61kB)
-    Total ROM Size (Code + RO Data + RW Data)      17424 (  17.02kB)
+    Total ROM Size (Code + RO Data + RW Data)      17480 (  17.07kB)
 
 ==============================================================================
 
