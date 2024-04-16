@@ -14,18 +14,29 @@ void LCD_Init() {
 	GPIOD->MODER |= (1 << 13); // Pin 13 Display
 }
 
+void TIM8_BRK_TIM12_IRQHandler(void) {
+	TIM12->SR = 0x0000;
+}
+
 void TIM12_Init() {
 	RCC->AHB1ENR |= 1 << 1; // enable GPIOB
 	GPIOB->MODER |= 2u << 14 * 2; // Pin 14 to 10 - alternate function
-	GPIOB->AFR[1] |= 9 << 23; // AFRH to 9
+	GPIOB->AFR[1] |= 9u << 14 * 2; // AFRH to 9
 	
 	RCC->APB1ENR |= (1 << 6); // Enable Clock for TIM12
-	TIM12->CR1 |= 1;					// CEN 1
+	TIM12->PSC = 0;
+	TIM12->ARR = 0xFFFF;
+	TIM12->CR1 |= 1;					// CEN 1, Enable internal clk for TIM 12
 	
 	TIM12->CCMR1 &= ~(0xFFu); // Filter IC1F to 0
 	TIM12->CCMR1 |= 1;				// Input, TIy-ICy
 	TIM12->CCER |= 1;					// CC1E enable
-	TIM12->SMCR |= 5;					// T1FP1 as trigger source (0b101)
+	TIM12->CCER &= ~(0x000Au);
+	TIM12->SMCR = 0;					// T1FP1 as trigger source (0b101)
+	TIM12->EGR = 1;						// update event register
+	
+	NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 5); // Priorität festlegen
+  NVIC_EnableIRQ(TIM8_BRK_TIM12_IRQn); // Timer 12 Interrupt aktivieren
 }
 
 void LCD_Output16BitWord(uint16_t data)
