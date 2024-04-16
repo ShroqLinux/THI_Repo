@@ -1,14 +1,21 @@
 #include "stm32f4xx.h"
 #include "_mcpr_stm32f407.h"
 #include <inttypes.h>
+#include <stdio.h>
 #include "display.h"
+
 
 void LCD_Output16BitWord(uint16_t data);
 void TIM12_Init(void);
 void TIM8_BRK_TIM12_IRQHandler(void);
-void LCD_Init(void);
+void lcd_Init(void);
 
-void LCD_Init() {
+uint16_t this_capture = 0;
+uint16_t last_capture = 0;
+uint16_t delta = 0;
+uint32_t ticks = 0;
+
+void lcd_Init() {
 	
 	RCC->AHB1ENR |= (1 << 4) | (1 << 3) | 1; // 3 for Port D (Display), 4 for Port E
 	GPIOD->MODER |= (1 << 13); // Pin 13 Display
@@ -16,6 +23,10 @@ void LCD_Init() {
 
 void TIM8_BRK_TIM12_IRQHandler(void) {
 	TIM12->SR = 0x0000;
+	this_capture = TIM12->CCR1;
+	ticks++;
+	delta = this_capture - last_capture;
+	last_capture = this_capture;
 }
 
 void TIM12_Init() {
@@ -27,12 +38,13 @@ void TIM12_Init() {
 	TIM12->PSC = 0;
 	TIM12->ARR = 0xFFFF;
 	TIM12->CR1 |= 1;					// CEN 1, Enable internal clk for TIM 12
+	TIM12->SMCR = 0;
 	
 	TIM12->CCMR1 &= ~(0xFFu); // Filter IC1F to 0
 	TIM12->CCMR1 |= 1;				// Input, TIy-ICy
 	TIM12->CCER |= 1;					// CC1E enable
 	TIM12->CCER &= ~(0x000Au);
-	TIM12->SMCR = 0;					// T1FP1 as trigger source (0b101)
+	
 	TIM12->EGR = 1;						// update event register
 	
 	NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 5); // Priorität festlegen
@@ -54,4 +66,20 @@ void LCD_Output16BitWord(uint16_t data)
     GPIOE->ODR |= (data & 0x1FF0u) << 3;
 
     return;
+}
+
+int main () {
+	TIM12_Init();
+	LCD_Init();
+	char str_ticks[50];
+	char str_freq[50];
+	while (  1  ) {
+		uint32_t freq = 84000000/delta;
+		
+		snprintf(str_ticks, 50, "%8d ticks", ticks);
+		LCD_WriteString(10, 10, 0xFFFF, 0x0000, str_ticks);
+		
+		snprintf(str_freq, 50, "%8d Hz", freq);
+		LCD_WriteString(10, 30, 0xFFFF, 0x0000, str_freq);
+	}
 }

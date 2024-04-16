@@ -395,14 +395,14 @@
               <FilePath>.\_mcpr_stm32f407.c</FilePath>
             </File>
             <File>
-              <FileName>display.o</FileName>
-              <FileType>3</FileType>
-              <FilePath>.\display.o</FilePath>
-            </File>
-            <File>
               <FileName>display.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\display.h</FilePath>
+            </File>
+            <File>
+              <FileName>display.o</FileName>
+              <FileType>3</FileType>
+              <FilePath>.\display.o</FilePath>
             </File>
           </Files>
         </Group>
@@ -803,14 +803,14 @@
               <FilePath>.\_mcpr_stm32f407.c</FilePath>
             </File>
             <File>
-              <FileName>display.o</FileName>
-              <FileType>3</FileType>
-              <FilePath>.\display.o</FilePath>
-            </File>
-            <File>
               <FileName>display.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\display.h</FilePath>
+            </File>
+            <File>
+              <FileName>display.o</FileName>
+              <FileType>3</FileType>
+              <FilePath>.\display.o</FilePath>
             </File>
           </Files>
         </Group>
@@ -1349,14 +1349,14 @@
               <FilePath>.\_mcpr_stm32f407.c</FilePath>
             </File>
             <File>
-              <FileName>display.o</FileName>
-              <FileType>3</FileType>
-              <FilePath>.\display.o</FilePath>
-            </File>
-            <File>
               <FileName>display.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\display.h</FilePath>
+            </File>
+            <File>
+              <FileName>display.o</FileName>
+              <FileType>3</FileType>
+              <FilePath>.\display.o</FilePath>
             </File>
           </Files>
         </Group>
