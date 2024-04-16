@@ -10,10 +10,10 @@ void TIM12_Init(void);
 void TIM8_BRK_TIM12_IRQHandler(void);
 void lcd_Init(void);
 
-uint16_t this_capture = 0;
-uint16_t last_capture = 0;
-uint16_t delta = 0;
-uint32_t ticks = 0;
+volatile static uint16_t this_capture = 0;
+volatile static uint16_t last_capture = 0;
+volatile static uint16_t delta = 0;
+volatile static uint32_t ticks = 0;
 
 void lcd_Init() {
 	
@@ -22,19 +22,23 @@ void lcd_Init() {
 }
 
 void TIM8_BRK_TIM12_IRQHandler(void) {
-	TIM12->SR = 0x0000;
-	this_capture = TIM12->CCR1;
-	ticks++;
-	delta = this_capture - last_capture;
-	last_capture = this_capture;
+	uint16_t status = TIM12->SR;
+	if (status & TIM_SR_CC1IF) {
+		this_capture = TIM12->CCR1;
+		ticks++;
+		delta = this_capture - last_capture;
+		last_capture = this_capture;
+	}
 }
 
 void TIM12_Init() {
+	RCC->APB1ENR |= (1 << 6); // Enable Clock for TIM12
 	RCC->AHB1ENR |= 1 << 1; // enable GPIOB
+	GPIOB->MODER &= ~(3u << 14 *2);
 	GPIOB->MODER |= 2u << 14 * 2; // Pin 14 to 10 - alternate function
 	GPIOB->AFR[1] |= 9u << 14 * 2; // AFRH to 9
 	
-	RCC->APB1ENR |= (1 << 6); // Enable Clock for TIM12
+
 	TIM12->PSC = 0;
 	TIM12->ARR = 0xFFFF;
 	TIM12->CR1 |= 1;					// CEN 1, Enable internal clk for TIM 12
@@ -44,8 +48,10 @@ void TIM12_Init() {
 	TIM12->CCMR1 |= 1;				// Input, TIy-ICy
 	TIM12->CCER |= 1;					// CC1E enable
 	TIM12->CCER &= ~(0x000Au);
+	TIM12->DIER |= 3u;
 	
 	TIM12->EGR = 1;						// update event register
+	TIM12->SR = 0;
 	
 	NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 5); // Priorität festlegen
   NVIC_EnableIRQ(TIM8_BRK_TIM12_IRQn); // Timer 12 Interrupt aktivieren
