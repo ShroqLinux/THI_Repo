@@ -9,12 +9,11 @@ void LCD_Output16BitWord(uint16_t data);
 void TIM12_Init(void);
 void TIM8_BRK_TIM12_IRQHandler(void);
 void lcd_Init(void);
-uint32_t tim12_capture_getticks(void);
 
 volatile static uint16_t this_capture = 0;
 volatile static uint16_t last_capture = 0;
-volatile static uint32_t delta = 0;
-
+volatile static uint16_t delta = 0;
+volatile static uint32_t ticks = 0;
 
 void lcd_Init() {
 	
@@ -26,6 +25,7 @@ void TIM8_BRK_TIM12_IRQHandler(void) {
 	uint16_t status = TIM12->SR;
 	if (status & TIM_SR_CC1IF) {
 		this_capture = TIM12->CCR1;
+		ticks++;
 		delta = this_capture - last_capture;
 		last_capture = this_capture;
 	}
@@ -74,22 +74,18 @@ void LCD_Output16BitWord(uint16_t data)
     return;
 }
 
-uint32_t tim12_capture_getticks(void){
-    return delta; // Rückgabe des Capture Wertes
-}
-
 int main () {
 	TIM12_Init();
 	LCD_Init();
-	char buf[50];
-
+	char str_ticks[50];
+	char str_freq[50];
 	while (  1  ) {
 		uint32_t freq = 84000000/delta;
 		
-		snprintf(buf, 50, "%8d ticks", delta);
-		LCD_WriteString(10, 10, 0xFFFF, 0x0000, buf);
+		snprintf(str_ticks, 50, "%8d ticks", ticks);
+		LCD_WriteString(10, 10, 0xFFFF, 0x0000, str_ticks);
 		
-		snprintf(buf, 50, "%8d Hz", freq);
-		LCD_WriteString(10, 30, 0xFFFF, 0x0000, buf);
+		snprintf(str_freq, 50, "%8d Hz", freq);
+		LCD_WriteString(10, 30, 0xFFFF, 0x0000, str_freq);
 	}
 }
