@@ -34,7 +34,7 @@ void TIM12_Init() {
 	RCC->AHB1ENR |= 1 << 1; // enable GPIOB
 	GPIOB->MODER &= ~(3u << 14 *2);
 	GPIOB->MODER |= 2u << 14 * 2; // Pin 14 to 10 - alternate function
-	GPIOB->AFR[1] |= 9u << 14 * 2; // AFRH to 9
+	GPIOB->AFR[1] |= 9u << 6 * 4; // AFRH to 9
 	
 
 	TIM12->PSC = 0;
@@ -45,8 +45,8 @@ void TIM12_Init() {
 	TIM12->CCMR1 &= ~(0xFFu); // Filter IC1F to 0
 	TIM12->CCMR1 |= 1;				// Input, TIy-ICy
 	TIM12->CCER |= 1;					// CC1E enable
-	TIM12->CCER &= ~(0x000Au);
-	TIM12->DIER |= 3u;
+	TIM12->CCER &= ~(0x000Au); // set CCP and CCNP to 00, edge detection for rising edge
+	TIM12->DIER |= 2u;				// enable CC1IE, enable capture event to trigger interrupt
 	
 	TIM12->EGR = 1;						// update event register
 	TIM12->SR = 0;
