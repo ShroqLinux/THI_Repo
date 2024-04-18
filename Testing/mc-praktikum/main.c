@@ -51,7 +51,7 @@ void TIM12_Init() {
 	TIM12->EGR = 1;						// update event register
 	TIM12->SR = 0;
 	
-	NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 5); // Priorität festlegen
+	NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 5); // Prioritï¿½t festlegen
   NVIC_EnableIRQ(TIM8_BRK_TIM12_IRQn); // Timer 12 Interrupt aktivieren
 }
 
@@ -72,6 +72,10 @@ void LCD_Output16BitWord(uint16_t data)
     return;
 }
 
+uint32_t tim12_capture_getticks() {
+	return (uint32_t) delta;
+}
+
 int main () {
 	TIM12_Init();
 	LCD_Init();
@@ -79,8 +83,9 @@ int main () {
 
 	while (  1  ) {
 		uint32_t freq = 84000000/delta;
-		
-		snprintf(buf, 30, "%8d ticks", delta);
+		uint32_t ticks = tim12_capture_getticks();
+
+		snprintf(buf, 30, "%8d ticks", ticks);
 		LCD_WriteString(10, 10, 0xFFFF, 0x0000, buf);
 		
 		snprintf(buf, 30, "%8d Hz", freq);

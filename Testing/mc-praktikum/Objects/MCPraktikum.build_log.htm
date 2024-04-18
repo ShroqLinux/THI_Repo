@@ -27,13 +27,6 @@ Project File Date:  04/11/2024
 <h2>Output:</h2>
 *** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Discovery Board - RAM'
-assembling startup_stm32f407xx.s...
-RTE/Device/STM32F407VGTx/system_stm32f4xx.c(263): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-  263 |   tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4)];
-      |         ^~~~~~~~~~~~~
-1 warning generated.
-compiling system_stm32f4xx.c...
-compiling _mcpr_stm32f407.c...
 main.c(5): warning: In file included from...
 ./display.h(20): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    20 | // L<F6>schen des Displays (in der angegebenen Farbe)
@@ -55,15 +48,23 @@ main.c(32): warning: a function declaration without a prototype is deprecated in
    32 | void TIM12_Init() {
       |                ^
       |                 void
-main.c(54): warning: invalid UTF-8 in comment [-Winvalid-utf8]
-   54 |         NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 5); // Priorit<E4>t festlegen
-      |                                                             ^
 main.c(75): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-   75 | int main () {
+   75 | uint32_t tim12_capture_getticks() {
+      |                                ^
+      |                                 void
+main.c(75): warning: no previous prototype for function 'tim12_capture_getticks' [-Wmissing-prototypes]
+   75 | uint32_t tim12_capture_getticks() {
+      |          ^
+main.c(75): note: declare 'static' if the function is not intended to be used outside of this translation unit
+   75 | uint32_t tim12_capture_getticks() {
+      | ^
+      | static 
+main.c(79): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   79 | int main () {
       |          ^
       |           void
-main.c(78): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
-   78 |         char buf[30];
+main.c(82): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+   82 |         char buf[30];
       |              ^
 main.c(37): warning: unsafe buffer access [-Wunsafe-buffer-usage]
    37 |         GPIOB->AFR[1] |= 9u << 6 * 4; // AFRH to 9
@@ -71,10 +72,10 @@ main.c(37): warning: unsafe buffer access [-Wunsafe-buffer-usage]
 C:/Users/shpet/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h(1103): note: expanded from macro 'GPIOB'
  1103 | #define GPIOB               ((GPIO_TypeDef *) GPIOB_BASE)
       |                             ^
-10 warnings generated.
+11 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=8292 RO-data=9172 RW-data=0 ZI-data=1640  
+Program Size: Code=8308 RO-data=9172 RW-data=0 ZI-data=1640  
 ".\Objects\MCPraktikum.axf" - 0 Error(s), 11 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -102,9 +103,9 @@ Package Vendor: Keil
 
    * Component: Keil::Device:Startup@2.6.3
       Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
-      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
+      Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
 Build Time Elapsed:  00:00:00
 </pre>
