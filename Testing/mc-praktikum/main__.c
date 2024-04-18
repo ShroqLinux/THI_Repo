@@ -40,6 +40,9 @@ void TIM7_IRQHandler(void)
 
 		GPIOD->ODR |= 1 << 13; // pin 13 for display
 		
+		//LCD_WriteString( 10, 10, uint16_t colForeground, uint16_t colBackground, char * text );
+		
+		
 			tensec_cnt = 0;
 		
 			if (onesec_cnt >= 500) {
@@ -52,10 +55,9 @@ void TIM7_IRQHandler(void)
 	if (!user_button)
 	{
 		tensec_cnt++;
-		GPIOD->ODR &= ~(1 << 12);
+		GPIOD->ODR &= ~(1u << 12);
 		if (tensec_cnt >= 10000)
 		{
-			
 			tensec_cnt = 0;
 			GPIOD->ODR &= ~(1u << 13);
 		}
@@ -101,7 +103,7 @@ void LEDs_InitPorts()
 	GPIOD->MODER |= (1 << 12 * 2);
 	GPIOD->MODER |= (1 << 13);
 	
-	GPIOD->ODR &= ~(1 << 13);
+	GPIOD->ODR &= ~(1u << 13);
 	
 	return;
 }
@@ -148,7 +150,7 @@ int main(void)
 	while (1)
 	{
 		uint16_t currSysCnt = sys_ms;
-
+		
 		snprintf(sys_time, 10, "%d", sys_ms);
 		LCD_WriteString (10, 10, 0xFFFF, 0x0000, sys_time);
 		
@@ -156,6 +158,7 @@ int main(void)
 			user_button = 1;
 		} 
 		else{
+			
 			user_button = 0;
 		}
 		

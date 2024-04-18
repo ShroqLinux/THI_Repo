@@ -3,9 +3,9 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: µVision V5.39.0.0
+IDE-Version: ÂµVision V5.39.0.0
 Copyright (C) 2023 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: THI THI, THI, LIC=----
+License Information: Shrey Pethkar, Airbus DS, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.39.0.0
@@ -21,56 +21,69 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.2.0.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-H:\SoSe 2024\Info 2 Praktikum\MC\MC_Praktikum_2024_V1.5\mc-praktikum\MC_Praktikum.uvprojx
+C:\Workspace\Inf2_MCT_own\Testing\mc-praktikum\MC_Praktikum.uvprojx
 Project File Date:  04/11/2024
 
 <h2>Output:</h2>
 *** Using Compiler 'V6.21', folder: 'C:\Keil_v5\ARM\ARMCLANG\Bin'
 Build target 'Discovery Board - RAM'
-main.c(4): warning: In file included from...
+assembling startup_stm32f407xx.s...
+RTE/Device/STM32F407VGTx/system_stm32f4xx.c(263): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+  263 |   tmp = AHBPrescTable[((RCC->CFGR & RCC_CFGR_HPRE) >> 4)];
+      |         ^~~~~~~~~~~~~
+1 warning generated.
+compiling system_stm32f4xx.c...
+compiling _mcpr_stm32f407.c...
+main.c(5): warning: In file included from...
 ./display.h(20): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    20 | // L<F6>schen des Displays (in der angegebenen Farbe)
       |     ^
 ./display.h(31): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    31 | // Wichtig: die folgende Funktion muss zur Verf<FC>gung gestellt werden 
       |                                                ^
-main.c(80): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-   80 | void TIM7_Init()
-      |               ^
-      |                void
-main.c(93): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-   93 | void LEDs_InitPorts()
-      |                    ^
-      |                     void
-main.c(128): warning: unused parameter 'data' [-Wunused-parameter]
-  128 | void LEDs_Write(uint16_t data)
-      |                          ^
-main.c(128): warning: no previous prototype for function 'LEDs_Write' [-Wmissing-prototypes]
-  128 | void LEDs_Write(uint16_t data)
-      |      ^
-main.c(128): note: declare 'static' if the function is not intended to be used outside of this translation unit
-  128 | void LEDs_Write(uint16_t data)
-      | ^
-      | static 
-main.c(24): warning: no previous extern declaration for non-static variable 'sys_time' [-Wmissing-variable-declarations]
-   24 | char sys_time[10];
-      |      ^
-main.c(24): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-   24 | char sys_time[10];
-      | ^
-7 warnings generated.
+main.c(17): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   17 | void lcd_Init() {
+      |              ^
+      |               void
+main.c(24): warning: implicit conversion loses integer precision: 'volatile uint32_t' (aka 'volatile unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+   24 |         uint16_t status = TIM12->SR;
+      |                  ~~~~~~   ~~~~~~~^~
+main.c(26): warning: implicit conversion loses integer precision: 'volatile uint32_t' (aka 'volatile unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+   26 |                 this_capture = TIM12->CCR1;
+      |                              ~ ~~~~~~~^~~~
+main.c(32): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   32 | void TIM12_Init() {
+      |                ^
+      |                 void
+main.c(54): warning: invalid UTF-8 in comment [-Winvalid-utf8]
+   54 |         NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 5); // Priorit<E4>t festlegen
+      |                                                             ^
+main.c(75): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   75 | int main () {
+      |          ^
+      |           void
+main.c(78): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+   78 |         char buf[30];
+      |              ^
+main.c(37): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   37 |         GPIOB->AFR[1] |= 9u << 6 * 4; // AFRH to 9
+      |         ^~~~~~~~~~
+C:/Users/shpet/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h(1103): note: expanded from macro 'GPIOB'
+ 1103 | #define GPIOB               ((GPIO_TypeDef *) GPIOB_BASE)
+      |                             ^
+10 warnings generated.
 compiling main.c...
 linking...
-Program Size: Code=9088 RO-data=9188 RW-data=4 ZI-data=1660  
-".\Objects\MCPraktikum.axf" - 0 Error(s), 7 Warning(s).
+Program Size: Code=8292 RO-data=9172 RW-data=0 ZI-data=1640  
+".\Objects\MCPraktikum.axf" - 0 Error(s), 11 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.5.9.0.pack
-                ARM::CMSIS@5.9.0
+                https://www.keil.com/pack/ARM.CMSIS.6.0.0.pack
+                ARM::CMSIS@6.0.0
                 CMSIS (Common Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.6.0
+   * Component: CORE Version: 6.0.0
 
 Package Vendor: Keil
                 https://www.keil.com/pack/Keil.STM32F4xx_DFP.2.17.1.pack
@@ -80,20 +93,20 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   ./RTE/_Discovery_Board_-_RAM
-  C:/bin/Arm/CMSIS/5.9.0/CMSIS/Core/Include
-  C:/bin/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
+  C:/Users/shpet/AppData/Local/Arm/Packs/ARM/CMSIS/6.0.0/CMSIS/Core/Include
+  C:/Users/shpet/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE@5.6.0
+   * Component: ARM::CMSIS:CORE@6.0.0
 
    * Component: Keil::Device:Startup@2.6.3
       Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
-      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:02
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
