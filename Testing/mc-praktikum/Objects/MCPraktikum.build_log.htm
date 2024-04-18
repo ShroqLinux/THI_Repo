@@ -34,49 +34,42 @@ main.c(5): warning: In file included from...
 ./display.h(31): warning: invalid UTF-8 in comment [-Winvalid-utf8]
    31 | // Wichtig: die folgende Funktion muss zur Verf<FC>gung gestellt werden 
       |                                                ^
-main.c(17): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-   17 | void lcd_Init() {
+main.c(18): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   18 | void lcd_Init() {
       |              ^
       |               void
-main.c(24): warning: implicit conversion loses integer precision: 'volatile uint32_t' (aka 'volatile unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
-   24 |         uint16_t status = TIM12->SR;
+main.c(25): warning: implicit conversion loses integer precision: 'volatile uint32_t' (aka 'volatile unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+   25 |         uint16_t status = TIM12->SR;
       |                  ~~~~~~   ~~~~~~~^~
-main.c(26): warning: implicit conversion loses integer precision: 'volatile uint32_t' (aka 'volatile unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
-   26 |                 this_capture = TIM12->CCR1;
+main.c(27): warning: implicit conversion loses integer precision: 'volatile uint32_t' (aka 'volatile unsigned int') to 'uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+   27 |                 this_capture = TIM12->CCR1;
       |                              ~ ~~~~~~~^~~~
-main.c(32): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-   32 | void TIM12_Init() {
+main.c(33): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   33 | void TIM12_Init() {
       |                ^
       |                 void
-main.c(75): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-   75 | uint32_t tim12_capture_getticks() {
+main.c(76): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   76 | uint32_t tim12_capture_getticks() {
       |                                ^
       |                                 void
-main.c(75): warning: no previous prototype for function 'tim12_capture_getticks' [-Wmissing-prototypes]
-   75 | uint32_t tim12_capture_getticks() {
-      |          ^
-main.c(75): note: declare 'static' if the function is not intended to be used outside of this translation unit
-   75 | uint32_t tim12_capture_getticks() {
-      | ^
-      | static 
-main.c(79): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
-   79 | int main () {
+main.c(80): warning: a function declaration without a prototype is deprecated in all versions of C [-Wstrict-prototypes]
+   80 | int main () {
       |          ^
       |           void
-main.c(82): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
-   82 |         char buf[30];
+main.c(83): warning: mixing declarations and code is incompatible with standards before C99 [-Wdeclaration-after-statement]
+   83 |         char buf[30];
       |              ^
-main.c(37): warning: unsafe buffer access [-Wunsafe-buffer-usage]
-   37 |         GPIOB->AFR[1] |= 9u << 6 * 4; // AFRH to 9
+main.c(38): warning: unsafe buffer access [-Wunsafe-buffer-usage]
+   38 |         GPIOB->AFR[1] |= 9u << 6 * 4; // AFRH to 9
       |         ^~~~~~~~~~
 C:/Users/shpet/AppData/Local/Arm/Packs/Keil/STM32F4xx_DFP/2.17.1/Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f407xx.h(1103): note: expanded from macro 'GPIOB'
  1103 | #define GPIOB               ((GPIO_TypeDef *) GPIOB_BASE)
       |                             ^
-11 warnings generated.
+10 warnings generated.
 compiling main.c...
 linking...
 Program Size: Code=8308 RO-data=9172 RW-data=0 ZI-data=1640  
-".\Objects\MCPraktikum.axf" - 0 Error(s), 11 Warning(s).
+".\Objects\MCPraktikum.axf" - 0 Error(s), 10 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -104,10 +97,10 @@ Package Vendor: Keil
    * Component: Keil::Device:Startup@2.6.3
       Source file:   MDK/Device/Source/ARM/STM32F40xxx_41xxx_OPT.s
       Source file:   MDK/Device/Source/ARM/STM32F4xx_OTP.s
-      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
       Include file:  Drivers/CMSIS/Device/ST/STM32F4xx/Include/stm32f4xx.h
+      Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/arm/startup_stm32f407xx.s
       Source file:   Drivers/CMSIS/Device/ST/STM32F4xx/Source/Templates/system_stm32f4xx.c
-Build Time Elapsed:  00:00:00
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
