@@ -47,6 +47,8 @@ void TIM4_Init() {
 	TIM4->CCER &= ~(1u << 4); // temp. set CC2E to 0, so CC2S can be written
 	TIM4->CCMR1 |= ~(3u << 8); // set CC2S to 00, compare mode
 	TIM4->CCER |= (1 << 4); // set CC2E to 1, enable compare mode
+	TIM4->CCMR1 |= ~(7u << 12); // Clear OC2M
+	TIM4->CCMR1 |= (3 << 13); // OC2M to 110
 	
 	TIM4->PSC = 84-1;
 	TIM4->ARR = 1000-1;
