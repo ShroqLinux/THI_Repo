@@ -9,6 +9,7 @@ void TIM4_Init(void);
 void TIM4_IRQHandler(void);
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 volatile static uint16_t this_capture = 0;
 volatile static uint16_t last_capture = 0;
 volatile static uint16_t delta = 0;
@@ -51,6 +52,9 @@ void TIM12_Init() {
 	NVIC_SetPriority(TIM8_BRK_TIM12_IRQn, 5); // Priorit?t festlegen
   NVIC_EnableIRQ(TIM8_BRK_TIM12_IRQn); // Timer 12 Interrupt aktivieren
 }
+=======
+volatile uint16_t tenSecCnt = 0;
+>>>>>>> Stashed changes
 =======
 volatile uint16_t tenSecCnt = 0;
 >>>>>>> Stashed changes
@@ -104,6 +108,7 @@ void TIM4_Init() {
 int main () {
 	mcpr_SetSystemCoreClock();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	TIM12_Init();
 	LCD_Init();
 	char buf[30];
@@ -123,6 +128,11 @@ int main () {
 		}
 	}
 }
+=======
+	LCD_Init();
+	TIM4_Init();
+}
+>>>>>>> Stashed changes
 =======
 	LCD_Init();
 	TIM4_Init();
