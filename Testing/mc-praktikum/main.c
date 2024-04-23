@@ -50,7 +50,7 @@ void TIM4_Init() {
 	TIM4->CCMR1 |= ~(7u << 12); // Clear OC2M
 	TIM4->CCMR1 |= (3 << 13); // OC2M to 110
 	
-	TIM4->PSC = 84-1;
+	TIM4->PSC = 420-1;
 	TIM4->ARR = 1000-1;
 	TIM4->DIER |= 1;
 	
