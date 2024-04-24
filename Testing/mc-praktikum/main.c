@@ -98,12 +98,14 @@ int main()
 				__NOP();
 			}
 			TIM4->CCR2 -= 200; // set compare value to 800
+			
 			twoSecCnt = 0;
 			for (size_t i = 0; i < 4; i++)
 			{
 				if (twoSecCnt < 2)
 				{
-					TIM4->CCR2 -= 125; // Decrease compare value by 125 every 2 seconds
+					TIM4->CCR2 -= 125;
+					twoSecCnt = 0; // Decrease compare value by 125 every 2 seconds
 				}
 			}
 		}
