@@ -359,12 +359,12 @@ Image Symbol Table
     __NVIC_SetPriority                       0x080007b5   Thumb Code    58  main.o(.text.__NVIC_SetPriority)
     [Anonymous Symbol]                       0x080007b4   Section        0  main.o(.text.__NVIC_SetPriority)
     [Anonymous Symbol]                       0x080007f0   Section        0  main.o(.text.main)
-    mcpr_SetSysClock                         0x080008a9   Thumb Code   326  _mcpr_stm32f407.o(.text.mcpr_SetSysClock)
-    [Anonymous Symbol]                       0x080008a8   Section        0  _mcpr_stm32f407.o(.text.mcpr_SetSysClock)
-    [Anonymous Symbol]                       0x080009f0   Section        0  _mcpr_stm32f407.o(.text.mcpr_SetSystemCoreClock)
-    [Anonymous Symbol]                       0x080009fc   Section        0  display.o(.text.wait_us)
-    $v0                                      0x08000a1c   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$fpinit                             0x08000a1c   Section       26  fpinit.o(x$fpl$fpinit)
+    mcpr_SetSysClock                         0x080008b5   Thumb Code   326  _mcpr_stm32f407.o(.text.mcpr_SetSysClock)
+    [Anonymous Symbol]                       0x080008b4   Section        0  _mcpr_stm32f407.o(.text.mcpr_SetSysClock)
+    [Anonymous Symbol]                       0x080009fc   Section        0  _mcpr_stm32f407.o(.text.mcpr_SetSystemCoreClock)
+    [Anonymous Symbol]                       0x08000a08   Section        0  display.o(.text.wait_us)
+    $v0                                      0x08000a28   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$fpinit                             0x08000a28   Section       26  fpinit.o(x$fpl$fpinit)
     .bss                                     0x20000008   Section       96  libspace.o(.bss)
     TIM4_IRQHandler.cnt                      0x20000068   Data           2  main.o(.bss.TIM4_IRQHandler.cnt)
     [Anonymous Symbol]                       0x20000068   Section        0  main.o(.bss.TIM4_IRQHandler.cnt)
@@ -572,15 +572,15 @@ Image Symbol Table
     SystemInit                               0x08000641   Thumb Code    18  system_stm32f4xx.o(.text.SystemInit)
     TIM4_IRQHandler                          0x08000655   Thumb Code    78  main.o(.text.TIM4_IRQHandler)
     TIM4_Init                                0x080006a5   Thumb Code   228  main.o(.text.TIM4_Init)
-    main                                     0x080007f1   Thumb Code   184  main.o(.text.main)
-    mcpr_SetSystemCoreClock                  0x080009f1   Thumb Code    12  _mcpr_stm32f407.o(.text.mcpr_SetSystemCoreClock)
-    wait_us                                  0x080009fd   Thumb Code    32  display.o(.text.wait_us)
-    _fp_init                                 0x08000a1d   Thumb Code    26  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08000a35   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08000a35   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    AHBPrescTable                            0x08000a36   Data          16  system_stm32f4xx.o(.rodata.AHBPrescTable)
-    Region$$Table$$Base                      0x08000a48   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08000a68   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x080007f1   Thumb Code   196  main.o(.text.main)
+    mcpr_SetSystemCoreClock                  0x080009fd   Thumb Code    12  _mcpr_stm32f407.o(.text.mcpr_SetSystemCoreClock)
+    wait_us                                  0x08000a09   Thumb Code    32  display.o(.text.wait_us)
+    _fp_init                                 0x08000a29   Thumb Code    26  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x08000a41   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x08000a41   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    AHBPrescTable                            0x08000a42   Data          16  system_stm32f4xx.o(.rodata.AHBPrescTable)
+    Region$$Table$$Base                      0x08000a54   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08000a74   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f4xx.o(.data.SystemCoreClock)
     __libspace_start                         0x20000008   Data          96  libspace.o(.bss)
     __temporary_stack_top$libspace           0x20000068   Data           0  libspace.o(.bss)
@@ -595,9 +595,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000255
 
-  Load Region LR_1 (Base: 0x08000000, Size: 0x00000a6c, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x08000000, Size: 0x00000a78, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00000a68, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00000a74, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -677,25 +677,25 @@ Memory Map of the image
     0x080007b2   0x080007b2   0x00000002   PAD
     0x080007b4   0x080007b4   0x0000003a   Code   RO            8    .text.__NVIC_SetPriority  main.o
     0x080007ee   0x080007ee   0x00000002   PAD
-    0x080007f0   0x080007f0   0x000000b8   Code   RO           12    .text.main          main.o
-    0x080008a8   0x080008a8   0x00000146   Code   RO           27    .text.mcpr_SetSysClock  _mcpr_stm32f407.o
-    0x080009ee   0x080009ee   0x00000002   PAD
-    0x080009f0   0x080009f0   0x0000000c   Code   RO           25    .text.mcpr_SetSystemCoreClock  _mcpr_stm32f407.o
-    0x080009fc   0x080009fc   0x00000020   Code   RO           44    .text.wait_us       display.o
-    0x08000a1c   0x08000a1c   0x0000001a   Code   RO          186    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x08000a36   0x08000a36   0x00000010   Data   RO           85    .rodata.AHBPrescTable  system_stm32f4xx.o
-    0x08000a46   0x08000a46   0x00000002   PAD
-    0x08000a48   0x08000a48   0x00000020   Data   RO          261    Region$$Table       anon$$obj.o
+    0x080007f0   0x080007f0   0x000000c4   Code   RO           12    .text.main          main.o
+    0x080008b4   0x080008b4   0x00000146   Code   RO           27    .text.mcpr_SetSysClock  _mcpr_stm32f407.o
+    0x080009fa   0x080009fa   0x00000002   PAD
+    0x080009fc   0x080009fc   0x0000000c   Code   RO           25    .text.mcpr_SetSystemCoreClock  _mcpr_stm32f407.o
+    0x08000a08   0x08000a08   0x00000020   Code   RO           44    .text.wait_us       display.o
+    0x08000a28   0x08000a28   0x0000001a   Code   RO          186    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x08000a42   0x08000a42   0x00000010   Data   RO           85    .rodata.AHBPrescTable  system_stm32f4xx.o
+    0x08000a52   0x08000a52   0x00000002   PAD
+    0x08000a54   0x08000a54   0x00000020   Data   RO          261    Region$$Table       anon$$obj.o
 
 
-    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08000a68, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RW (Exec base: 0x20000000, Load base: 0x08000a74, Size: 0x00000004, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
-    0x20000000   0x08000a68   0x00000004   Data   RW           84    .data.SystemCoreClock  system_stm32f4xx.o
+    0x20000000   0x08000a74   0x00000004   Data   RW           84    .data.SystemCoreClock  system_stm32f4xx.o
 
 
-    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x08000a6c, Size: 0x00000668, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_ZI (Exec base: 0x20000008, Load base: 0x08000a78, Size: 0x00000668, Max: 0xffffffff, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -703,7 +703,7 @@ Memory Map of the image
     0x20000068        -       0x00000002   Zero   RW           16    .bss.TIM4_IRQHandler.cnt  main.o
     0x2000006a        -       0x00000002   Zero   RW           14    .bss.tenSecCnt      main.o
     0x2000006c        -       0x00000002   Zero   RW           15    .bss.twoSecCnt      main.o
-    0x2000006e   0x08000a6c   0x00000002   PAD
+    0x2000006e   0x08000a78   0x00000002   PAD
     0x20000070        -       0x00000200   Zero   RW           71    HEAP                startup_stm32f407xx.o
     0x20000270        -       0x00000400   Zero   RW           70    STACK               startup_stm32f407xx.o
 
@@ -715,14 +715,14 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       338          0          0          0          0       5716   _mcpr_stm32f407.o
+       338          0          0          0          0       5720   _mcpr_stm32f407.o
        416          0          0          0          0       4460   display.o
-       718          0          0          0          6       6046   main.o
-        64         26        392          0       1536        888   startup_stm32f407xx.o
-       320          0         16          4          0       2733   system_stm32f4xx.o
+       730          0          0          0          6       6053   main.o
+        64         26        392          0       1536        892   startup_stm32f407xx.o
+       320          0         16          4          0       2737   system_stm32f4xx.o
 
     ----------------------------------------------------------------------
-      1868         26        442          4       1544      19843   Object Totals
+      1880         26        442          4       1544      19862   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         12          0          2          0          2          0   (incl. Padding)
 
@@ -773,15 +773,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      2222         42        442          4       1640      20395   Grand Totals
-      2222         42        442          4       1640      20395   ELF Image Totals
-      2222         42        442          4          0          0   ROM Totals
+      2234         42        442          4       1640      20414   Grand Totals
+      2234         42        442          4       1640      20414   ELF Image Totals
+      2234         42        442          4          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 2664 (   2.60kB)
+    Total RO  Size (Code + RO Data)                 2676 (   2.61kB)
     Total RW  Size (RW Data + ZI Data)              1644 (   1.61kB)
-    Total ROM Size (Code + RO Data + RW Data)       2668 (   2.61kB)
+    Total ROM Size (Code + RO Data + RW Data)       2680 (   2.62kB)
 
 ==============================================================================
 
