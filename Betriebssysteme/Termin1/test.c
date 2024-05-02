@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <pthread.h>
+#include <string.h>
 
  /* Thread -Funktion */
 void *example_fct(void *args){
@@ -13,10 +14,13 @@ void *example_fct(void *args){
         /* Warte ein wenig; 1 microsecunde */
         nanosleep (&sleep , NULL);
     }
+    int length = strlen(*(char**)args);
+    printf("String length: %d\n", length);
  return NULL;
 }
 
 int main(){
+    char* name = "User";
     /* Lege zwei Thread -handle an */
     pthread_t threadA , threadB;
 
@@ -24,6 +28,8 @@ int main(){
     Konfigurations - und Übergabe -Parameter werden nicht gesetzt , daher NULL. */
     pthread_create (&threadA , NULL , &example_fct , NULL);
     pthread_create (&threadB , NULL , &example_fct , NULL);
+
+    example_fct(&name);
 
  /* Warte auf Beendigung der beiden Threads */
     pthread_join(threadA , NULL);
