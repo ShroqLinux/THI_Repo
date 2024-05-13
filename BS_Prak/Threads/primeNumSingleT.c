@@ -22,7 +22,7 @@ void *primeCalc(void *num)
 
 int main()
 {
-    int num = 79;
+    int num = 17;
     pthread_t thread1;
     pthread_create(&thread1, NULL, primeCalc, &num);
     pthread_join(thread1, NULL);
