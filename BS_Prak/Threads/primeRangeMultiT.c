@@ -6,8 +6,6 @@
 
 // #define MAX 1000000
 
-int numThreads;
-
 pthread_barrier_t start_barrier;
 pthread_barrier_t finish_barrier;
 
@@ -89,7 +87,7 @@ int main(int argc, char *argv[])
     pthread_mutex_init(&cnt_lock, NULL); // Initialize mutex for cnt
 
     // Get number of threads and max number from command line arguments
-    numThreads = atoi(argv[1]);
+    int numThreads = atoi(argv[1]);
     int max = atoi(argv[2]);
 
     // declare array of threads and ranges according to number of threads
