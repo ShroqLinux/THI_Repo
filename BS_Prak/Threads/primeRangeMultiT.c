@@ -18,7 +18,6 @@ typedef struct Range
     double exec_time;
 } Range;
 
-#include <math.h>
 
 bool checkPrime(int a)
 {
@@ -71,7 +70,7 @@ int main(int argc, char *argv[])
 
     if (argc != 3)
     {
-        printf("Usage: %s (Number of threads) %s (Max Number)\n", argv[0], argv[1]);
+        printf("Usage: %s (Number of threads) (Max Number)\n", argv[0]);
         return 1;
     }
 
