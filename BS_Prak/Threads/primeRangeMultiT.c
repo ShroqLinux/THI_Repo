@@ -9,10 +9,7 @@
 int numThreads;
 
 pthread_barrier_t start_barrier;
-
-pthread_mutex_t finish_lock;
-pthread_cond_t finish_cond;
-int finished_threads = 0;
+pthread_barrier_t finish_barrier;
 
 int cnt = 0;
 pthread_mutex_t cnt_lock;
@@ -25,7 +22,6 @@ typedef struct Range
     int end;
     double exec_time;
 } Range;
-
 
 bool checkPrime(int a)
 {
@@ -55,79 +51,70 @@ bool checkPrime(int a)
 
 void *print_primes(void *arg)
 {
-    pthread_barrier_wait(&start_barrier);
+    pthread_barrier_wait(&start_barrier); // Wait for all threads to be created
 
-    Range *range = (Range *)arg;
-    struct timespec start, end;
+    Range *range = (Range *)arg; // Get range from argument by dereferencing
+    struct timespec start, end;  // Start and end time for each thread
+
+    clock_gettime(CLOCK_MONOTONIC, &start);
 
     for (int i = range->start; i <= range->end; i++)
     {
         if (checkPrime(i))
         {
-            clock_gettime(CLOCK_MONOTONIC, &start);
             printf("%d\n", i);
-            clock_gettime(CLOCK_MONOTONIC, &end);
-            range->exec_time += (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000000000.0;
         }
     }
 
     // After finishing the range
-    pthread_mutex_lock(&finish_lock);
-    finished_threads++;
-    if (finished_threads == numThreads)
-    {
-        // If this is the last thread to finish, signal the main thread
-        pthread_cond_signal(&finish_cond);
-    }
-    pthread_mutex_unlock(&finish_lock);
+    pthread_barrier_wait(&finish_barrier);
+
+    clock_gettime(CLOCK_MONOTONIC, &end);
+    range->exec_time += (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000000000.0;
 
     return NULL;
 }
 
 int main(int argc, char *argv[])
 {
-    clock_gettime(CLOCK_MONOTONIC, &start); // Start time
-    pthread_mutex_init(&cnt_lock, NULL);
+    clock_gettime(CLOCK_MONOTONIC, &start); // Start time for total execution time
 
+    // Check for correct number of arguments
     if (argc != 3)
     {
         printf("Usage: %s (Number of threads) (Max Number)\n", argv[0]);
         return 1;
     }
 
+    pthread_mutex_init(&cnt_lock, NULL); // Initialize mutex for cnt
+
+    // Get number of threads and max number from command line arguments
     numThreads = atoi(argv[1]);
     int max = atoi(argv[2]);
 
+    // declare array of threads and ranges according to number of threads
     pthread_t threads[numThreads];
     Range ranges[numThreads];
 
     int interval = max / numThreads;
 
-    // Initialize the mutex and condition variable
-    pthread_mutex_init(&finish_lock, NULL);
-    pthread_cond_init(&finish_cond, NULL);
-
+    // Initialize barriers
     pthread_barrier_init(&start_barrier, NULL, numThreads + 1);
+    pthread_barrier_init(&finish_barrier, NULL, numThreads);
 
+    // Create threads and assign ranges
     for (int i = 0; i < numThreads; i++)
     {
         ranges[i].exec_time = 0.0; // Initialize exec_time to 0
         ranges[i].start = i * interval + 1;
         ranges[i].end = (i + 1) * interval;
         if (i == numThreads - 1)
-            ranges[i].end = max - 1; // Last thread checks up to num - 1
-        pthread_create(&threads[i], NULL, print_primes, &ranges[i]);
+            ranges[i].end = max - 1;                                 // Last thread checks up to num - 1, so that last range doesn't exceed max
+        pthread_create(&threads[i], NULL, print_primes, &ranges[i]); // Create thread
     }
 
+    // Wait for all threads to be created before starting
     pthread_barrier_wait(&start_barrier);
-
-    // Wait for all threads to finish
-    pthread_mutex_lock(&finish_lock);
-    while (finished_threads < numThreads)
-    {
-        pthread_cond_wait(&finish_cond, &finish_lock);
-    }
-    pthread_mutex_unlock(&finish_lock);
 
     // Join all threads
     for (int i = 0; i < numThreads; i++)
@@ -135,25 +122,27 @@ int main(int argc, char *argv[])
         pthread_join(threads[i], NULL);
     }
 
+    // After all threads are done, destroy barriers
+    pthread_barrier_destroy(&finish_barrier);
     pthread_barrier_destroy(&start_barrier);
 
+    // Get execution time of each thread and print
     for (int i = 0; i < numThreads; i++)
     {
         printf("Execution time of thread %d: %f seconds\n", i, ranges[i].exec_time);
     }
 
-    
+    // Destroy mutex for cnt
     pthread_mutex_destroy(&cnt_lock);
+
+    // Print total prime numbers, max number, number of threads and total execution time
     printf("Total prime numbers: %d\n", cnt);
     printf("\nThreads: %d, Max Number: %d\n", numThreads, max);
 
+    // Calculate and print total execution time
     clock_gettime(CLOCK_MONOTONIC, &end);
     double exec_time = (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000000000.0;
     printf("Total execution time: %f seconds\n", exec_time);
-
-    // Destroy the mutex and condition variable
-    pthread_mutex_destroy(&finish_lock);
-    pthread_cond_destroy(&finish_cond);
 
     return 0;
 }
