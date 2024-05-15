@@ -7,6 +7,11 @@
 int current_number = 2; // Start from the first prime number
 int max_number;
 pthread_mutex_t number_lock;
+int numThreads;
+
+pthread_mutex_t finish_lock;
+pthread_cond_t finish_cond;
+int finished_threads = 0;
 
 int cnt = 0;
 pthread_mutex_t cnt_lock;
@@ -46,6 +51,17 @@ void *print_primes(void *arg)
         if (current_number >= max_number)
         {
             pthread_mutex_unlock(&number_lock);
+
+            // After finishing the range
+            pthread_mutex_lock(&finish_lock);
+            finished_threads++;
+            if (finished_threads == numThreads)
+            {
+                // If this is the last thread to finish, signal the main thread
+                pthread_cond_signal(&finish_cond);
+            }
+            pthread_mutex_unlock(&finish_lock);
+
             return NULL;
         }
 
@@ -74,7 +90,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
-    int numThreads = atoi(argv[1]);
+    numThreads = atoi(argv[1]);
     max_number = atoi(argv[2]);
 
     pthread_t threads[numThreads];
@@ -82,11 +98,23 @@ int main(int argc, char *argv[])
 
     pthread_mutex_init(&number_lock, NULL);
 
+    // Initialize the mutex and condition variable
+    pthread_mutex_init(&finish_lock, NULL);
+    pthread_cond_init(&finish_cond, NULL);
+
     for (int i = 0; i < numThreads; i++)
     {
         ranges[i].exec_time = 0.0; // Initialize exec_time to 0
         pthread_create(&threads[i], NULL, print_primes, &ranges[i]);
     }
+
+    // Wait for all threads to finish
+    pthread_mutex_lock(&finish_lock);
+    while (finished_threads < numThreads)
+    {
+        pthread_cond_wait(&finish_cond, &finish_lock);
+    }
+    pthread_mutex_unlock(&finish_lock);
 
     pthread_mutex_destroy(&number_lock);
 
@@ -95,6 +123,10 @@ int main(int argc, char *argv[])
     {
         pthread_join(threads[i], NULL);
     }
+
+     // Destroy the mutex and condition variable
+    pthread_mutex_destroy(&finish_lock);
+    pthread_cond_destroy(&finish_cond);
 
     // Second loop to print the execution times
     for (int i = 0; i < numThreads; i++)
