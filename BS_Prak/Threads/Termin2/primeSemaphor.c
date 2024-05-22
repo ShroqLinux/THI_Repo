@@ -4,14 +4,15 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
+#include <semaphore.h>
 
 int max;
 int numThreads;
 int currentVal = 2;
 int totalPrimes = 0;
 
-pthread_mutex_t value_lck;
-pthread_mutex_t cnt_lck;
+sem_t cnt_sem;
+sem_t val_sem;
 
 bool checkPrime(int a)
 {
@@ -37,16 +38,16 @@ void *allPrimes(void *args)
 
     while (currentVal < max)
     {
-        pthread_mutex_lock(&value_lck);
+        sem_wait(&val_sem);
         thisValue = currentVal;
         currentVal++;
-        pthread_mutex_unlock(&value_lck);
+        sem_post(&val_sem);
 
         if (checkPrime(thisValue))
         {
-            pthread_mutex_lock(&cnt_lck);
+            sem_wait(&cnt_sem);
             totalPrimes++;
-            pthread_mutex_unlock(&cnt_lck);
+            sem_post(&cnt_sem);
         }
     }
 
@@ -79,17 +80,19 @@ int main(int argc, char *argv[])
 
     int ret;
 
-    ret = pthread_mutex_init(&value_lck, NULL);
-    if (ret != 0)
+    ret = sem_init(&val_sem, 0, 1);
+
+    if (ret == -1)
     {
-        fprintf(stderr, "Failed to initialize value_lck: %s\n", strerror(ret));
+        perror("val_sem failed");
         return 1;
     }
 
-    ret = pthread_mutex_init(&cnt_lck, NULL);
-    if (ret != 0)
+    ret = sem_init(&cnt_sem, 0, 1);
+
+    if (ret == -1)
     {
-        fprintf(stderr, "Failed to initialize cnt_lck: %s\n", strerror(ret));
+        perror("cnt_sem failed");
         return 1;
     }
 
@@ -103,23 +106,25 @@ int main(int argc, char *argv[])
         pthread_join(threads[i], NULL);
     }
 
-    ret = pthread_mutex_destroy(&value_lck);
-    if (ret != 0)
-    {
-        fprintf(stderr, "Failed to destroy value_lck: %s\n", strerror(ret));
-        return 1;
-    }
-
-    ret = pthread_mutex_destroy(&cnt_lck);
-    if (ret != 0)
-    {
-        fprintf(stderr, "Failed to destroy cnt_lck: %s\n", strerror(ret));
-        return 1;
-    }
-
     for (int i = 0; i < numThreads; i++)
     {
         printf("Execution time thread %d: %f\n", i, execTimes[i]);
+    }
+
+    ret = sem_destroy(&val_sem);
+
+    if (ret == -1)
+    {
+        perror("Failed to destroy val_sem");
+        return 1;
+    }
+
+    ret = sem_destroy(&cnt_sem);
+
+    if (ret == -1)
+    {
+        perror("Failed to destroy cnt_sem");
+        return 1;
     }
 
     // clock_t end = clock();
