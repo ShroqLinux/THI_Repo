@@ -44,6 +44,8 @@ void *print_primes(void *arg)
     Range *range = (Range *)arg;
     struct timespec start, end;
 
+    clock_gettime(CLOCK_MONOTONIC, &start);
+
     while (1)
     {
         pthread_mutex_lock(&number_lock);
@@ -62,6 +64,8 @@ void *print_primes(void *arg)
             }
             pthread_mutex_unlock(&finish_lock);
 
+            clock_gettime(CLOCK_MONOTONIC, &end);
+            range->exec_time += (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000000000.0;
             return NULL;
         }
 
@@ -70,15 +74,15 @@ void *print_primes(void *arg)
 
         pthread_mutex_unlock(&number_lock);
 
-        clock_gettime(CLOCK_MONOTONIC, &start);
 
         if (checkPrime(number))
         {
-            printf("%d\n", number);
+            pthread_mutex_lock(&cnt_lock);
+            cnt++;
+            pthread_mutex_unlock(&cnt_lock);
         }
 
-        clock_gettime(CLOCK_MONOTONIC, &end);
-        range->exec_time += (end.tv_sec - start.tv_sec) + (end.tv_nsec - start.tv_nsec) / 1000000000.0;
+        
     }
 }
 
@@ -97,6 +101,7 @@ int main(int argc, char *argv[])
     Range ranges[numThreads];
 
     pthread_mutex_init(&number_lock, NULL);
+    pthread_mutex_init(&cnt_lock, NULL);
 
     // Initialize the mutex and condition variable
     pthread_mutex_init(&finish_lock, NULL);
@@ -117,6 +122,7 @@ int main(int argc, char *argv[])
     pthread_mutex_unlock(&finish_lock);
 
     pthread_mutex_destroy(&number_lock);
+    pthread_mutex_destroy(&cnt_lock);
 
     // First loop to join all threads
     for (int i = 0; i < numThreads; i++)
@@ -134,6 +140,7 @@ int main(int argc, char *argv[])
         printf("Execution time of thread %d: %f seconds\n", i, ranges[i].exec_time);
     }
     
+    printf("%d Prime numbers\n", cnt);
 
     return 0;
 }
