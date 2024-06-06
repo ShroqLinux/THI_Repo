@@ -10,6 +10,7 @@ std::counting_semaphore<1> listLock{1};
 
 std::counting_semaphore<1> cntLock{1};
 int cnt{};
+int listCnt{};
 
 int max{};
 
@@ -33,30 +34,59 @@ void addNum() {
         cntLock.acquire();
         int currentCnt = cnt;
         cntLock.release();
+        
 
+        
         if (currentCnt >= max) {
             break;
         }
+        
 
         listLock.acquire();
-        numList.insert(numList.begin(), rand());
+        if (listCnt < 5) {
+            int newVal = rand() % 1000;
+            numList.insert(numList.begin(), newVal);
+            std::cout << "Producer: " << newVal << std::endl;
+
+            listCnt++;
+            std::cout << "List count: " << listCnt << std::endl;
+        }
         listLock.release();
+        // std::this_thread::sleep_for(std::chrono::milliseconds(50));
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
+    return;
 }
 
 void useNum() {
-    int thisVal{};
 
     while (true) {
         listLock.acquire();
 
+        int thisVal{};
+
         if (!numList.empty()) {
+            int lastVal{};
+
             thisVal = numList.back();
             numList.pop_back();
+            listCnt--;
+            if(thisVal != lastVal)
+                std::cout << "Consumer: " << thisVal << std::endl;
+            lastVal = thisVal;
         }
-
         listLock.release();
 
+        cntLock.acquire();
+        cnt++;
+        cntLock.release();
+
+        if (cnt >= max && numList.empty()) {
+                break;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+
+        /*
         if(checkPrime(thisVal)) {
 
             cntLock.acquire();
@@ -65,11 +95,15 @@ void useNum() {
                 break;
             }
 
-            std::cout << thisVal << " is Prime" << std::endl;
-            cnt++;
+            // std::cout << thisVal << " is Prime" << std::endl;
             cntLock.release();
+        
         }
+        */
+        
+        
     }
+    return;
 }
 
 int main (int argc, char* argv[]) {
@@ -114,7 +148,7 @@ int main (int argc, char* argv[]) {
     }
 
     for(size_t i = 0; i < execTimes.size(); i++) {
-        std::cout << "Thread " << i << ": " << execTimes[i] << std::endl;
+        std::cout << "Producer Thread " << i << ": " << execTimes[i] << std::endl;
     }
     
     return 0;
