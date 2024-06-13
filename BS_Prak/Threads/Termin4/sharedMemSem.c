@@ -62,8 +62,14 @@ int main(int argc, char *argv[])
         for (size_t i = 0; i < iter; i++)
         {
             int value = (rand() % 1000);
+
+            int* payload = (int*) ptr;
+            // addition: add read with second semaphore
+            // printf("Read in write process (PID: %d): %d\n", getpid(), *payload);
+
             printf("Write process (PID: %d): %d\n", getpid(), value);
             sem_wait(sem);
+
             memcpy(ptr, &value, sizeof(value));
             sem_post(sem);
             usleep(1000 * 1500);
@@ -74,10 +80,19 @@ int main(int argc, char *argv[])
     {
         for (size_t i = 0; i < iter; i++)
         {
+
+            // additional: add write with second semaphore
             usleep(1000 * 1500);
             // sleep(1);
             sem_wait(sem);
-            printf("Read process (PID: %d): %d\n", getpid(), *((int *)ptr));
+
+            int* payload = (int*) ptr;
+            printf("Read process (PID: %d): %d\n", getpid(), *payload);
+            /*
+            *payload = *(payload) * 2;
+            memcpy(ptr, &payload, sizeof(payload));
+            */
+
             sem_post(sem);
             fflush(stdout);
         }

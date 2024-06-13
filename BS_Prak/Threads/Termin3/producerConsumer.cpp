@@ -6,9 +6,14 @@
 
 
 std::vector<int> numList{};
-std::counting_semaphore<1> listLock{1};
+std::counting_semaphore listLock{5};
 
 std::counting_semaphore<1> cntLock{1};
+
+std::counting_semaphore semFree(5);
+
+std::counting_semaphore semStored(0);
+
 int cnt{};
 int listCnt{};
 
@@ -29,8 +34,10 @@ bool checkPrime (int toCheck) {
 }
 
 void addNum() {
+    
     while (true) {
 
+        /*
         cntLock.acquire();
         int currentCnt = cnt;
         cntLock.release();
@@ -40,18 +47,17 @@ void addNum() {
         if (currentCnt >= max) {
             break;
         }
+        */
         
 
-        listLock.acquire();
-        if (listCnt < 5) {
-            int newVal = rand() % 1000;
-            numList.insert(numList.begin(), newVal);
-            std::cout << "Producer: " << newVal << std::endl;
+        semFree.acquire();
 
-            listCnt++;
-            std::cout << "List count: " << listCnt << std::endl;
-        }
-        listLock.release();
+        int newVal = rand() % 1000;
+        numList.insert(numList.begin(), newVal);
+        std::cout << "Producer: " << newVal << '\n';
+        // std::cout << "List count: " << listCnt << '\n';
+
+        semStored.release();
         // std::this_thread::sleep_for(std::chrono::milliseconds(50));
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
@@ -61,7 +67,7 @@ void addNum() {
 void useNum() {
 
     while (true) {
-        listLock.acquire();
+        semStored.acquire();
 
         int thisVal{};
 
@@ -70,16 +76,17 @@ void useNum() {
 
             thisVal = numList.back();
             numList.pop_back();
-            listCnt--;
             if(thisVal != lastVal)
-                std::cout << "Consumer: " << thisVal << std::endl;
+                std::cout << "Consumer: " << thisVal << '\n';
             lastVal = thisVal;
+            /*
+            cntLock.acquire();
+            cnt++;
+            cntLock.release();
+            */
         }
-        listLock.release();
+        semFree.release();
 
-        cntLock.acquire();
-        cnt++;
-        cntLock.release();
 
         if (cnt >= max && numList.empty()) {
                 break;
@@ -116,6 +123,7 @@ int main (int argc, char* argv[]) {
     int numProducers = atoi(argv[1]);
     int numConsumers = atoi(argv[2]);
     max = atoi(argv[3]);
+
 
     std::vector<std::thread> threads{};
     std::vector<float> execTimes(numProducers);
