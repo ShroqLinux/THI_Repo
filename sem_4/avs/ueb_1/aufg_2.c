@@ -18,6 +18,7 @@ union semun {
 
 
 char* sem_handle = "./sem_key";
+int sem_id = 0;
 
 int init_sem() {
     key_t key = ftok(sem_handle, 5);
@@ -26,7 +27,7 @@ int init_sem() {
         exit(1);
     }
 
-    int sem_id = semget(key, 1, IPC_CREAT | 0666);
+    sem_id = semget(key, 1, IPC_CREAT | 0666);
     if (sem_id == -1) {
         perror("semget failed");
         exit(1);
@@ -42,12 +43,39 @@ int init_sem() {
     return 0;
 }
 
-void func_crit(int id) {
-    
-    printf("Child process ID %d entering critical section\n", id);
-    sleep(2);
-    printf("Child process ID %d exiting critical section\n", id);
 
+int P () {
+    struct sembuf semaphore;
+
+    semaphore.sem_num = 0;
+    semaphore.sem_op=-1;  //P
+    semaphore.sem_flg =~ (IPC_NOWAIT|SEM_UNDO);
+
+    if (semop(sem_id, &semaphore, 1) < 0) { // sem_id provided by return value of semget()
+        perror("Error in semop() at V()");
+        exit(1);
+    }
+}
+
+int V () {
+    struct sembuf semaphore;
+
+    semaphore.sem_num = 0;
+    semaphore.sem_op=1;  //V
+    semaphore.sem_flg =~ (IPC_NOWAIT|SEM_UNDO);
+
+    if (semop(sem_id, &semaphore, 1) < 0) { // sem_id provided by return value of semget()
+        perror("Error in semop() at V()");
+        exit(1);
+    }
+}
+
+void func_crit(int id) {
+    P();
+    printf("Child process ID %d entering critical section\n", id);
+    sleep(1);
+    printf("Child process ID %d exiting critical section\n", id);
+    V();
 }
 
 int main() {
