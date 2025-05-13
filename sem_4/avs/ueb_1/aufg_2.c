@@ -19,16 +19,7 @@ union semun {
 
 char* sem_handle = "./sem_key";
 
-void func_crit(int id) {
-    
-    printf("Child process ID %d entering critical section\n", id);
-    sleep(2);
-    printf("Child process ID %d exiting critical section\n", id);
-
-}
-
-int main() {
-
+int init_sem() {
     key_t key = ftok(sem_handle, 5);
     if(key == -1) {
         perror("ftok failed");
@@ -47,6 +38,25 @@ int main() {
         perror("semctl SETVAL failed");
         exit(1);
     }
+
+    return 0;
+}
+
+void func_crit(int id) {
+    
+    printf("Child process ID %d entering critical section\n", id);
+    sleep(2);
+    printf("Child process ID %d exiting critical section\n", id);
+
+}
+
+int main() {
+
+    if (init_sem() != 0) {
+        perror("init_sem failed");
+        exit(1);
+    }
+    
     int res = fork();
 
     if (res == -1) {
